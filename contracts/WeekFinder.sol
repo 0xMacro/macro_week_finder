@@ -63,13 +63,22 @@ contract WeekFinder is Initializable, UUPSUpgradeable, OwnableUpgradeable {
         // this is the start of W0 for Block 9. Given an arbitrary date, we can
         // calculate how many weeks it is from this date (modulo 7 weeks) to get
         // the Week number for that arbitrary date
-        uint256 WEEK_0_DATE = 1_665_964_800;
+        uint256 WEEK_0_DATE_BLOCK_9 = 1_665_964_800; // Oct 17, 2022
 
-        if (unixTimestamp < WEEK_0_DATE) {
+        // between end of Block 9 and start of Block 10 the Instruction
+        // team is taking an extended break for brainstorming and
+        // course improvement work, so we have an irregular schedule change
+        // here.
+        uint256 WEEK_0_DATE_BLOCK_10 = 1_672_617_600; // Jan 9, 2022
+
+        uint256 remainder;
+        if (unixTimestamp < WEEK_0_DATE_BLOCK_9) {
             revert TooEarly();
+        } else if (unixTimestamp < WEEK_0_DATE_BLOCK_10) {
+            remainder = unixTimestamp - WEEK_0_DATE_BLOCK_9;
+        } else {
+            remainder = unixTimestamp - WEEK_0_DATE_BLOCK_10;
         }
-
-        uint256 remainder = unixTimestamp - WEEK_0_DATE;
 
 
         // the number of seconds from the start of W0 to the end of W6
