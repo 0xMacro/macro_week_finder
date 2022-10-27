@@ -1,10 +1,9 @@
-
 import { expect } from "chai";
-import { ethers } from "hardhat";
+import { ethers, upgrades } from "hardhat";
 import { BigNumber, BigNumberish } from "ethers";
 import { time } from "@nomicfoundation/hardhat-network-helpers";
 import type { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
-import {} from "../typechain-types"; // eslint-disable-line
+import { WeekFinder } from "../typechain-types"; // eslint-disable-line
 
 // ----------------------------------------------------------------------------
 // OPTIONAL: Constants and Helper Functions
@@ -40,11 +39,22 @@ const closeTo = async (
 
 describe("Week Finder", () => {
   let deployer: SignerWithAddress;
-  let alice: SignerWithAddress;
-  let bob: SignerWithAddress;
+  let weekFinder: WeekFinder;
 
   beforeEach(async () => {
-    [deployer, alice, bob] = await ethers.getSigners();
+    [deployer] = await ethers.getSigners();
 
+    const WeekFinder = await ethers.getContractFactory("WeekFinder");
+    weekFinder = await upgrades.deployProxy(WeekFinder, [
+      "https://time.is/Unix_time_converter",
+      deployer.address,
+    ]) as WeekFinder
   });
+
+  it("fails when date before Oct 17 2022", async () => {
+    const d = Math.floor((new Date("2022-10-07T20:21:21.539Z")).getTime() / 1000)
+    await expect(
+      weekFinder.fromDateToWeekNumber(d)
+    ).to.be.revertedWithCustomError(weekFinder, "TooEarly")
+  })
 });

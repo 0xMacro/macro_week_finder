@@ -23,8 +23,8 @@ module.exports = {
       "error",
       { ignores: ["modules"] },
     ],
-    '@typescript-eslint/no-floating-promises': ['error'],
+    "@typescript-eslint/no-floating-promises": ["error"],
     "no-unused-expressions": "off",
-    "camelcase": "off"
+    camelcase: "off",
   },
 };
