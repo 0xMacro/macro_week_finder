@@ -57,4 +57,20 @@ describe("Week Finder", () => {
       weekFinder.fromDateToWeekNumber(d)
     ).to.be.revertedWithCustomError(weekFinder, "TooEarly")
   })
+
+  it("works for W0 in Block 9", async () => {
+    let d = Math.floor(new Date("2022-10-17T00:00:00.000Z").getTime() / 1000)
+    expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W0")
+
+    d = Math.floor(new Date("2022-10-23T23:59:59.999Z").getTime() / 1000)
+    expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W0")
+  })
+
+  it("works for W1 in Block 9", async () => {
+    let d = Math.floor(new Date("2022-10-24T00:00:00.001Z").getTime() / 1000)
+    expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W1")
+
+    d = Math.floor(new Date("2022-10-30T23:59:59.999Z").getTime() / 1000)
+    expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W1")
+  })
 });
