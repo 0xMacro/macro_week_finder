@@ -1,6 +1,8 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity 0.8.17;
 
+// https://github.com/0xMacro/macro_week_finder
+
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
@@ -57,33 +59,37 @@ contract WeekFinder is Initializable, UUPSUpgradeable, OwnableUpgradeable {
     /// @return weekNumber a string of the from "W0", "W1"... "W6"
     function fromDateToWeekNumber(uint256 unixTimestamp)
         public
-        view
+        pure
         returns (string memory weekNumber)
     {
+
+        // the number of seconds from the start of W0 to the end of W6
+        // a.k.a. 7 weeks
+        uint256 NUM_SECONDS_IN_FELLOWSHIP = 4233600;
+
         // this is the start of W0 for Block 9. Given an arbitrary date, we can
         // calculate how many weeks it is from this date (modulo 7 weeks) to get
         // the Week number for that arbitrary date
         uint256 WEEK_0_DATE_BLOCK_9 = 1_665_964_800; // Oct 17, 2022
 
+        uint256 END_OF_BLOCK_9 = WEEK_0_DATE_BLOCK_9 + NUM_SECONDS_IN_FELLOWSHIP;
+
         // between end of Block 9 and start of Block 10 the Instruction
         // team is taking an extended break for brainstorming and
         // course improvement work, so we have an irregular schedule change
         // here.
-        uint256 WEEK_0_DATE_BLOCK_10 = 1_672_617_600; // Jan 9, 2022
+        uint256 WEEK_0_DATE_BLOCK_10 = 1_672_617_600; // Jan 2, 2022
 
         uint256 remainder;
         if (unixTimestamp < WEEK_0_DATE_BLOCK_9) {
             revert TooEarly();
-        } else if (unixTimestamp < WEEK_0_DATE_BLOCK_10) {
+        } else if (unixTimestamp < END_OF_BLOCK_9) {
             remainder = unixTimestamp - WEEK_0_DATE_BLOCK_9;
+        } else if (unixTimestamp < WEEK_0_DATE_BLOCK_10) {
+            revert NoFellowship();
         } else {
             remainder = unixTimestamp - WEEK_0_DATE_BLOCK_10;
         }
-
-
-        // the number of seconds from the start of W0 to the end of W6
-        // a.k.a. 7 weeks
-        uint256 NUM_SECONDS_IN_FELLOWSHIP = 4233600;
 
         if (remainder % NUM_SECONDS_IN_FELLOWSHIP < 1 * 604800) {
             return "W0";
@@ -105,5 +111,6 @@ contract WeekFinder is Initializable, UUPSUpgradeable, OwnableUpgradeable {
     }
 
     error TooEarly();
+    error NoFellowship(); // between end of Block 9 and Jan 2 2023 there is no fellowship
     error InvalidTimestamp(uint256 unixTimestamp);
 }

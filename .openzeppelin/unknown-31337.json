@@ -2,55 +2,85 @@
   "manifestVersion": "3.2",
   "proxies": [
     {
-      "address": "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318",
-      "txHash": "0x452126268d511fd897010ff4fa82d26be06c9fefb738ae6f0ba7cb8a4c291b28",
+      "address": "0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0",
+      "txHash": "0x2aa16514736a12828514b961502017226324afa26ab94e624ee6db79f4b7ac05",
+      "kind": "uups"
+    },
+    {
+      "address": "0x0DCd1Bf9A1b36cE34237eEaFef220932846BCD82",
+      "txHash": "0x94ccfb9c75f471a940f7ce2784384e97504cc6e01556c90b75db21bd2cc61fc9",
+      "kind": "uups"
+    },
+    {
+      "address": "0x9A676e781A523b5d0C0e43731313A708CB607508",
+      "txHash": "0x4cc05a20b7515efb6974eef9dd2c3e7922873a1872b3169c61ecfd339548a80d",
+      "kind": "uups"
+    },
+    {
+      "address": "0x0B306BF915C4d645ff596e518fAf3F9669b97016",
+      "txHash": "0x2565ecba59ded5e09c3cda340dbb1eb2ab75471259e7172f13c2d73a2dd0f9e8",
       "kind": "uups"
     },
     {
       "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
-      "txHash": "0xc40813d43d4534a5cb3c43be4a1e13fe4fde937a125b201ef6c93abc81618014",
+      "txHash": "0x476f81700d03eab317ddda287a575c29f92718f9d27fafbc0d65b1e079bfd05b",
       "kind": "uups"
     },
     {
       "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
-      "txHash": "0xf68efb197df4ea4f2813230f74e8d04fb37368482c998e43548f71418a25fac1",
+      "txHash": "0x5eb0b20e6a283337409cf772fb96948ee9f5a72ffd1d15ede0210b3e4df5be2b",
       "kind": "uups"
     },
     {
       "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
-      "txHash": "0x5c46dbe04d1b59bbd2c705764d0b7ae9e689edb5c247a1538d7a9f233d22a462",
+      "txHash": "0x4a94446ff5e00e75ee0aa620d937920f547843f39dbcb8412bfa60bda3833b96",
       "kind": "uups"
     },
     {
       "address": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
-      "txHash": "0xeed499035603771a15d273edef394f41ab94db5f9f125c2d92681f2e1737d6ab",
+      "txHash": "0x58309dd964e1380bcbfc5e1cfb3bf95617dbd3b41781dd3cd512c16bb0f34f58",
       "kind": "uups"
     },
     {
       "address": "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
-      "txHash": "0x53c677b1b37d51006ab881a2c74623d67d59548a1bbc78aa8bde19e3779477ba",
+      "txHash": "0x6239719a283787e9bef7db92be78709ebd644cb06ec6feacbc941b6254011c69",
       "kind": "uups"
     },
     {
       "address": "0x0165878A594ca255338adfa4d48449f69242Eb8F",
-      "txHash": "0x92fb4c79f25f3887a6b01b75dd10f4570ba7b1d9210e9134217714348d03df01",
+      "txHash": "0x08045fe5b323c5ef3334ad41271f091f79f437e1a85103c82dee8a084fc1679b",
       "kind": "uups"
     },
     {
       "address": "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
-      "txHash": "0xf64ad7beb261635d91271fb4174566f1923926d77e0eac6a5486bbcc5cd57609",
+      "txHash": "0x3eb7fbf44cd3361b2b93a095b03afb352a4861d2d9c58c4190e7418a0074f0cd",
       "kind": "uups"
     },
     {
       "address": "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6",
-      "txHash": "0x5cf8a810c4b32207433cc9c95854b7af8c2897cf1e1ecec9cec94369e92f39d0",
+      "txHash": "0x25b5c373bcb74cf155b69061364ec41a6fe3217c88ff8c82a07dcb2ecf88761a",
+      "kind": "uups"
+    },
+    {
+      "address": "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318",
+      "txHash": "0x80603c864be3dfdb04de30c488bc184b970ce20f95e554777cff59bd776892af",
+      "kind": "uups"
+    },
+    {
+      "address": "0x610178dA211FEF7D417bC0e6FeD39F05609AD788",
+      "txHash": "0xb22a3b787e2993ea4cd6748573bd9dd6e41ae4c4b6efc597fa0c9a15750a67ac",
+      "kind": "uups"
+    },
+    {
+      "address": "0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e",
+      "txHash": "0xcb3aa6a4195e3ee7de7212dcfe07e8fdbc46c8370df1e436b4e5c3fa0e32f7f6",
       "kind": "uups"
     }
   ],
   "impls": {
-    "a3130048aa144327743c6671d253ee0f693e6d8050ddbba40e0c054f32fb0ae5": {
+    "9add435bdcacf7ddc1ad2903b256600136ada79874e4e44c0a7795b808927972": {
       "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
-      "txHash": "0xe47ba055a515445fc46f039868dbf53dcb6b9ff0c50fc4ee237f9e00f7c88b5b",
+      "txHash": "0x14f64ceb107ee2b5cea4cc22f042f517c1ef04fdc9512e6f21418593d6e8f549",
       "layout": {
         "solcVersion": "0.8.17",
         "storage": [
@@ -117,7 +147,7 @@
             "slot": "201",
             "type": "t_string_storage",
             "contract": "WeekFinder",
-            "src": "contracts/WeekFinder.sol:22"
+            "src": "contracts/WeekFinder.sol:24"
           }
         ],
         "types": {
