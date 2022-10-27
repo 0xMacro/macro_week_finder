@@ -5,6 +5,8 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
+import "hardhat/console.sol";
+
 /// @title WeekFinder
 /// @notice A simple contract which takes in a Unix-timestamp, and returns which Week of the Macro Fellowship it exists in
 /// @dev See the GitHub repository here: https://github.com/0xMacro/macro_week_finder
@@ -55,7 +57,7 @@ contract WeekFinder is Initializable, UUPSUpgradeable, OwnableUpgradeable {
     /// @return weekNumber a string of the from "W0", "W1"... "W6"
     function fromDateToWeekNumber(uint256 unixTimestamp)
         public
-        pure
+        view
         returns (string memory weekNumber)
     {
         // this is the start of W0 for Block 9. Given an arbitrary date, we can
@@ -69,21 +71,22 @@ contract WeekFinder is Initializable, UUPSUpgradeable, OwnableUpgradeable {
 
         uint256 remainder = unixTimestamp - WEEK_0_DATE;
 
+
         // the number of seconds from the start of W0 to the end of W6
         // a.k.a. 7 weeks
         uint256 NUM_SECONDS_IN_FELLOWSHIP = 4233600;
 
-        if (remainder % NUM_SECONDS_IN_FELLOWSHIP <= 1 * 604800) {
+        if (remainder % NUM_SECONDS_IN_FELLOWSHIP < 1 * 604800) {
             return "W0";
-        } else if (remainder % NUM_SECONDS_IN_FELLOWSHIP <= 2 * 604800) {
+        } else if (remainder % NUM_SECONDS_IN_FELLOWSHIP < 2 * 604800) {
             return "W1";
-        } else if (remainder % NUM_SECONDS_IN_FELLOWSHIP <= 3 * 604800) {
+        } else if (remainder % NUM_SECONDS_IN_FELLOWSHIP < 3 * 604800) {
             return "W2";
-        } else if (remainder % NUM_SECONDS_IN_FELLOWSHIP <= 4 * 604800) {
+        } else if (remainder % NUM_SECONDS_IN_FELLOWSHIP < 4 * 604800) {
             return "W3";
-        } else if (remainder % NUM_SECONDS_IN_FELLOWSHIP <= 5 * 604800) {
+        } else if (remainder % NUM_SECONDS_IN_FELLOWSHIP < 5 * 604800) {
             return "W4";
-        } else if (remainder % NUM_SECONDS_IN_FELLOWSHIP <= 6 * 604800) {
+        } else if (remainder % NUM_SECONDS_IN_FELLOWSHIP < 6 * 604800) {
             return "W5";
         } else if (remainder % NUM_SECONDS_IN_FELLOWSHIP < 7 * 604800) {
             return "W6";

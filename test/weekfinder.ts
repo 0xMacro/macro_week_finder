@@ -58,19 +58,62 @@ describe("Week Finder", () => {
     ).to.be.revertedWithCustomError(weekFinder, "TooEarly")
   })
 
-  it("works for W0 in Block 9", async () => {
-    let d = Math.floor(new Date("2022-10-17T00:00:00.000Z").getTime() / 1000)
-    expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W0")
+  describe("Block 9", () => {
 
-    d = Math.floor(new Date("2022-10-23T23:59:59.999Z").getTime() / 1000)
-    expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W0")
-  })
+    it("works for W0 in Block 9", async () => {
+      let d = Math.floor(new Date("2022-10-17T00:00:00.000Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W0")
 
-  it("works for W1 in Block 9", async () => {
-    let d = Math.floor(new Date("2022-10-24T00:00:00.001Z").getTime() / 1000)
-    expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W1")
+      d = Math.floor(new Date("2022-10-23T23:59:59.999Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W0")
+    })
 
-    d = Math.floor(new Date("2022-10-30T23:59:59.999Z").getTime() / 1000)
-    expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W1")
+    it("works for W1 in Block 9", async () => {
+      let d = Math.floor(new Date("2022-10-24T00:00:00.001Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W1")
+
+      d = Math.floor(new Date("2022-10-30T23:59:59.999Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W1")
+    })
+
+    it("works for W2 in Block 9", async () => {
+      let d = Math.floor(new Date("2022-10-31T00:00:00.001Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W2")
+
+      d = Math.floor(new Date("2022-11-06T23:59:59.999Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W2")
+    })
+
+    it("works for W3 in Block 9", async () => {
+      let d = Math.floor(new Date("2022-11-07T00:00:00.001Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W3")
+
+      d = Math.floor(new Date("2022-11-13T23:59:59.999Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W3")
+    })
+
+    it("works for W4 in Block 9", async () => {
+      let d = Math.floor(new Date("2022-11-14T00:00:00.001Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W4")
+
+      d = Math.floor(new Date("2022-11-20T23:59:59.999Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W4")
+    })
+
+    it("works for W5 in Block 9", async () => {
+      let d = Math.floor(new Date("2022-11-21T00:00:00.001Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W5")
+
+      d = Math.floor(new Date("2022-11-27T23:59:59.999Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W5")
+    })
+
+    it("works for W6 in Block 9", async () => {
+      let d = Math.floor(new Date("2022-11-28T00:00:00.001Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W6")
+
+      d = Math.floor(new Date("2022-12-04T23:59:59.999Z").getTime() / 1000)
+      expect(await weekFinder.fromDateToWeekNumber(d)).to.equal("W6")
+    })
   })
 });
