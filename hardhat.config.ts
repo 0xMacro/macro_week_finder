@@ -29,11 +29,13 @@ const config: HardhatUserConfig = {
   },
   networks: {
     goerli: {
+      chainId: 5,
       url: process.env.GOERLI_URL || "",
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
     hardhat: {
+      chainId: 31337,
       accounts: {
         count: 20,
         accountsBalance: "10000000000000000000000", // 10ETH (Default)
@@ -43,6 +45,6 @@ const config: HardhatUserConfig = {
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,
   },
-};
+}
 
 export default config;

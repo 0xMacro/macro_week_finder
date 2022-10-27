@@ -26,6 +26,24 @@ describe("Week Finder", () => {
     ).to.be.revertedWithCustomError(weekFinder, "TooEarly")
   })
 
+  it("fails to call initialize on implementation contract", async () => {
+    const currentImplAddress =
+      await upgrades.erc1967.getImplementationAddress(weekFinder.address)
+
+    const WeekFinder = await ethers.getContractFactory("WeekFinder")
+    const impl = await WeekFinder.attach(currentImplAddress) as WeekFinder
+
+    await expect(
+      impl.initialize("https://time.is/Unix_time_converter", deployer.address)
+    ).to.be.revertedWith("Initializable: contract is already initialized")
+  })
+
+  it("fails to call initialize once proxy has already been initialized", async () => {
+    await expect(
+      weekFinder.initialize("https://time.is/Unix_time_converter", deployer.address)
+    ).to.be.revertedWith("Initializable: contract is already initialized")
+  })
+
   describe("Block 9", () => {
 
     it("works for W0 in Block 9", async () => {
